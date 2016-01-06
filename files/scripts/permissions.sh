@@ -27,6 +27,7 @@ dirs=$(echo "$@" | awk '{ print substr($0, index($0,$5)) }');
 ch_con_recursive() {
 dirs=$(echo "$@" | awk '{ print substr($0, index($0,$1)) }');
   for i in $dirs; do
+    find "$i" -exec LD_LIBRARY_PATH=/system/lib /system/lib64 /system/toolbox chcon u:object_r:system_file:s0 {} +;
     find "$i" -exec LD_LIBRARY_PATH=/system/lib /system/lib64 /system/bin/toolbox chcon u:object_r:system_file:s0 {} +;
     find "$i" -exec chcon u:object_r:system_file:s0 {} +;
   done;

@@ -25,6 +25,6 @@ ui_print("Setting permissions...");
 package_extract_file("scripts/permissions.sh", "/tmp/permissions.sh");
 set_perm(0, 0, 0777, "/tmp/permissions.sh");
 run_program("/tmp/permissions.sh", "");
-ui_print("Unmounting system");
+ui_print("Unmounting system...");
 run_program("/sbin/busybox", "umount", "/system");
 ui_print("Installation complete!");
