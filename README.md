@@ -13,6 +13,7 @@
 
 * A full Linux system with an Android build system setup
 * Java 7 or higher
+* realpath binary "sudo apt-get install realpath"
 
 **CREDITS:**
 
