@@ -45,6 +45,8 @@ cat <<EOF
   etc/preferred-apps/google.xml
   etc/sysconfig/google.xml
   etc/sysconfig/google_build.xml
+  etc/sysconfig/whitelist_com.android.omadm.service.xml
+  etc/updatecmds/google_generic_update.txt
   framework/com.google.android.camera.experimental2015.jar
   framework/com.google.android.dialer.support.jar
   framework/com.google.android.maps.jar
