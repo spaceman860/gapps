@@ -32,4 +32,6 @@
 * Open GApps
 * APKMirror
 * Android File Host
+* Kevin Minions
+* beanstown106
 * Others I may have missed
