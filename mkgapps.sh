@@ -37,6 +37,9 @@ TARGETAPK=$TARGETDIR/$(basename "$TARGETDIR").apk
   zipalign -f -p 4 "$TARGETAPK".orig "$TARGETAPK"
   rm -rf "$TARGETAPK".orig
 }
+
+# Define beginning time
+BEGIN=$(date +%s.%N)
    
 cd "$GAPPSDIR/dynamic/FaceLock/arm/app/FaceLock"
 dcapk 1> /dev/null 2>&1
@@ -93,9 +96,13 @@ mv -f "$ZIPNAME1" "$FINALDIR"
 cp -f "$FINALDIR"/"$ZIPNAME1" "$FINALDIR"/"$ZIPNAME2"
 cd
 
+# Define ending time
+END=$(date +%s.%N)
+
 clear
 sleep 2
 echo "All done creating GApps!"
+echo "Total time elapsed:$(echo "($END - $BEGIN) / 60" | bc) minutes ($(echo "$END - $BEGIN" | bc) seconds)"
 echo "You can find the completed GApp zips in the '$(realpath .)/out' directory"
 echo "Now flash dat ish"
 
