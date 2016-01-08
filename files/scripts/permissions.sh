@@ -14,20 +14,27 @@
 
 # Functions
 set_perm_recursive() {
-dirs=$(echo "$@" | awk '{ print substr($0, index($0,$5)) }');
+  dirs=$(echo $* | awk '{ print substr($0, index($0,$5)) }');
   for i in $dirs; do
-    chown -R "$1.$2" "$i"; chown -R "$1:$2" "$i";
-    find "$i" -type d -exec chmod "$3" {} +;
-    find "$i" -type f -exec chmod "$4" {} +;
+    chown -R $1.$2 $i; chown -R $1:$2 $i;
+    find "$i" -type d -exec chmod $3 {} +;
+    find "$i" -type f -exec chmod $4 {} +;
   done;
 }
 
 ch_con_recursive() {
-dirs=$(echo "$@" | awk '{ print substr($0, index($0,$1)) }');
+  dirs=$(echo $* | awk '{ print substr($0, index($0,$3)) }');
   for i in $dirs; do
-    find "$i" -exec LD_LIBRARY_PATH=/system/lib /system/lib64 /system/toolbox chcon u:object_r:system_file:s0 {} +;
-    find "$i" -exec LD_LIBRARY_PATH=/system/lib /system/lib64 /system/bin/toolbox chcon u:object_r:system_file:s0 {} +;
-    find "$i" -exec chcon u:object_r:system_file:s0 {} +;
+    for j in /system/bin/toybox /system/toolbox /system/bin/toolbox; do
+      find "$i" -type d -exec LD_LIBRARY_PATH=/system/lib $j chcon -h u:object_r:$1:s0 {} +;
+      find "$i" -type f -exec LD_LIBRARY_PATH=/system/lib $j chcon -h u:object_r:$2:s0 {} +;
+      find "$i" -type d -exec LD_LIBRARY_PATH=/system/lib $j chcon u:object_r:$1:s0 {} +;
+      find "$i" -type f -exec LD_LIBRARY_PATH=/system/lib $j chcon u:object_r:$2:s0 {} +;
+    done;
+    find "$i" -type d -exec chcon -h u:object_r:$1:s0 '{}' +;
+    find "$i" -type f -exec chcon -h u:object_r:$2:s0 '{}' +;
+    find "$i" -type d -exec chcon u:object_r:$1:s0 '{}' +;
+    find "$i" -type f -exec chcon u:object_r:$2:s0 '{}' +;
   done;
 }
 
