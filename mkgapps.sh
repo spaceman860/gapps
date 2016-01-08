@@ -94,7 +94,6 @@ cd "$TOOLSDIR"
 java -Xmx2048m -jar signapk.jar -w testkey.x509.pem testkey.pk8 "$ZIPNAME1" "$ZIPNAME1"
 mv -f "$ZIPNAME1" "$FINALDIR"
 cp -f "$FINALDIR"/"$ZIPNAME1" "$FINALDIR"/"$ZIPNAME2"
-cd
 
 # Define ending time
 END=$(date +%s.%N)
