@@ -26,15 +26,15 @@ ch_con_recursive() {
   dirs=$(echo $* | awk '{ print substr($0, index($0,$3)) }');
   for i in $dirs; do
     for j in /system/bin/toybox /system/toolbox /system/bin/toolbox; do
-      find "$i" -type d -exec LD_LIBRARY_PATH=/system/lib $j chcon -h u:object_r:$1:s0 {} +;
-      find "$i" -type f -exec LD_LIBRARY_PATH=/system/lib $j chcon -h u:object_r:$2:s0 {} +;
-      find "$i" -type d -exec LD_LIBRARY_PATH=/system/lib $j chcon u:object_r:$1:s0 {} +;
-      find "$i" -type f -exec LD_LIBRARY_PATH=/system/lib $j chcon u:object_r:$2:s0 {} +;
+      find "$i" -type d -exec LD_LIBRARY_PATH=/system/lib $j chcon -h u:object_r:system_file:s0 {} +;
+      find "$i" -type f -exec LD_LIBRARY_PATH=/system/lib $j chcon -h u:object_r:system_file:s0 {} +;
+      find "$i" -type d -exec LD_LIBRARY_PATH=/system/lib $j chcon u:object_r:system_file:s0 {} +;
+      find "$i" -type f -exec LD_LIBRARY_PATH=/system/lib $j chcon u:object_r:system_file:s0 {} +;
     done;
-    find "$i" -type d -exec chcon -h u:object_r:$1:s0 '{}' +;
-    find "$i" -type f -exec chcon -h u:object_r:$2:s0 '{}' +;
-    find "$i" -type d -exec chcon u:object_r:$1:s0 '{}' +;
-    find "$i" -type f -exec chcon u:object_r:$2:s0 '{}' +;
+    find "$i" -type d -exec chcon -h u:object_r:system_file:s0 '{}' +;
+    find "$i" -type f -exec chcon -h u:object_r:system_file:s0 '{}' +;
+    find "$i" -type d -exec chcon u:object_r:system_file:s0 '{}' +;
+    find "$i" -type f -exec chcon u:object_r:system_file:s0 '{}' +;
   done;
 }
 
