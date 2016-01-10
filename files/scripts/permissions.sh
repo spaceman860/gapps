@@ -42,8 +42,8 @@ ch_con_recursive() {
 set_perm_recursive 0 0 755 755 "/system/addon.d";
 set_perm_recursive 0 0 755 644 "/system/app" "/system/etc/permissions" "/system/etc/preferred-apps" "/system/etc/sysconfig" "/system/framework" "/system/lib" "/system/lib64" "/system/priv-app" "/system/usr/srec" "/system/vendor/lib" "/system/vendor/lib64" "/system/vendor/pittpatt";
 
-# Change pittpatt folders to root:shell
-find "/system/vendor/pittpatt" -type d -exec chown 0.2000 '{}' \; -exec chown 0:2000 '{}' \;
+# Change pittpatt folders to root:shell per Google Factory Settings
+find "/system/vendor/pittpatt" -type d -exec chown 0.2000 '{}' \;
 
 # Set selinux contexts
 ch_con_recursive "/system/addon.d" "/system/app" "/system/etc/permissions" "/system/etc/preferred-apps" "/system/etc/sysconfig" "/system/framework" "/system/lib" "/system/lib64" "/system/priv-app" "/system/usr/srec" "/system/vendor/lib" "/system/vendor/lib64" "/system/vendor/pittpatt";
