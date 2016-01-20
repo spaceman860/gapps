@@ -13,17 +13,21 @@
 #    GNU General Public License for more details.
 
 # Functions & variables
+rom_build_prop=/system/build.prop
+
 file_getprop() {
-    grep "^$2" "$1" | cut -d= -f2;
+  grep "^$2" "$1" | cut -d= -f2;
 }
 
-rom_build_prop=/system/build.prop
 device_architecture="$(file_getprop $rom_build_prop "ro.product.cpu.abilist=")"
+
 # If the recommended field is empty, fall back to the deprecated one
 if [ -z "$device_architecture" ]; then
   device_architecture="$(file_getprop $rom_build_prop "ro.product.cpu.abi=")"
 fi
+
 is_tablet="$(grep ro.build.characteristics $rom_build_prop | grep tablet)"
+
 lcd="$(grep ro.sf.lcd_density $rom_build_prop | cut -d "=" -f 2)"
 
 # FaceLock

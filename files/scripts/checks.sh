@@ -15,57 +15,36 @@
 # Functions & variables
 rom_build_prop=/system/build.prop
 
-# get file descriptor for output
-OUTFD=$(ps | grep -v grep | grep -oE "update-binary(.*)" | cut -d " " -f 3)
-
-ui_print() {
-    if [ -n "$OUTFD" ]; then
-        echo "ui_print ${1} " 1>&$OUTFD;
-        echo "ui_print " 1>&$OUTFD;
-    else
-        echo "${1}";
-    fi;
-}
-
 file_getprop() {
-    grep "^$2" "$1" | cut -d= -f2;
+  grep "^$2" "$1" | cut -d= -f2;
 }
 
-if [ -e $rom_build_prop ]
-then
-    rom_build_name=$(file_getprop $rom_build_prop ro.build.display.id)
-    ui_print "ROM build: $rom_build_name"
+rom_version_required=6.0
+rom_version_installed=$(file_getprop $rom_build_prop ro.build.version.release)
 
-    # prevent installation of incorrect gapps version
-    rom_version_required=6.0
-    rom_version_installed=$(file_getprop $rom_build_prop ro.build.version.release)
-    ui_print "ROM version required: $rom_version_required"
-    ui_print "ROM version installed: $rom_version_installed"
-    if [ -z "${rom_version_installed##*$rom_version_required*}" ]
-    then
-        ui_print "ROM and GApps versions match...proceeding";
-    else
-        ui_print "ROM and GApps versions don't match...aborting";
-        exit 1
-    fi
+architecture_required=arm
+architecture_installed="$(file_getprop $rom_build_prop "ro.product.cpu.abilist=")"
 
-    # prevent installation of gapps on wrong architecture
-    # (this package supports armeabi, armeabi-v7a, and arm64-v8.
-    #  so, as long as the retrieved architecture from build.prop contains
-    #  "arm" then the device is supported.)
-    architecture_required=arm
-    architecture_installed="$(file_getprop $rom_build_prop "ro.product.cpu.abilist=")"
-    # If the recommended field is empty, fall back to the deprecated one
-    if [ -z "$architecture_installed" ]; then
-      architecture_installed="$(file_getprop $rom_build_prop "ro.product.cpu.abi=")"
-    fi
-    ui_print "Architecture required: $architecture_required"
-    ui_print "Current cpu architecture(s) supported: $architecture_installed"
-    if ! (echo "$architecture_installed" | grep -qi "$architecture_required"); then
-        exit 1
-    else
-        ui_print "Architecture check passed...proceeding";
-    fi
+# If the recommended field is empty, fall back to the deprecated one
+if [ -z "$architecture_installed" ]; then
+  architecture_installed="$(file_getprop $rom_build_prop "ro.product.cpu.abi=")"
+fi
+ 
+# prevent installation of incorrect gapps version
+if [ -z "${rom_version_installed##*$rom_version_required*}" ]; then
+  continue
+else
+  exit 1
+fi
+
+# prevent installation of gapps on wrong architecture
+# (this package supports armeabi, armeabi-v7a, and arm64-v8.
+#  so, as long as the retrieved architecture from build.prop contains
+#  "arm" then the device is supported.)
+if ! (echo "$architecture_installed" | grep -qi "$architecture_required"); then
+  exit 1
+else
+  continue
 fi
 
 exit 0
