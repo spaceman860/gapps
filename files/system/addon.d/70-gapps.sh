@@ -36,6 +36,7 @@ fi
 list_files() {
 cat <<EOF
   app/FaceLock/FaceLock.apk
+  app/ChromeBookmarksSyncAdapter/ChromeBookmarksSyncAdapter.apk
   app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
   app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
   app/GoogleTTS/GoogleTTS.apk

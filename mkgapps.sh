@@ -92,6 +92,8 @@ cd "$GAPPSDIR/dynamic/Velvet/arm/priv-app/Velvet"
 dcapk 1> /dev/null 2>&1
 cd "$GAPPSDIR/dynamic/Velvet/arm64/priv-app/Velvet"
 dcapk 1> /dev/null 2>&1
+cd "$GAPPSDIR/system/app/ChromeBookmarksSyncAdapter"
+dcapk 1> /dev/null 2>&1
 cd "$GAPPSDIR/system/app/GoogleCalendarSyncAdapter"
 dcapk 1> /dev/null 2>&1
 cd "$GAPPSDIR/system/app/GoogleContactsSyncAdapter"
