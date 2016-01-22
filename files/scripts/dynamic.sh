@@ -13,11 +13,9 @@
 #    GNU General Public License for more details.
 
 # Functions & variables
-rom_build_prop=/system/build.prop
+file_getprop() { grep "^$2" "$1" | cut -d= -f2; }
 
-file_getprop() {
-  grep "^$2" "$1" | cut -d= -f2;
-}
+rom_build_prop=/system/build.prop
 
 device_architecture="$(file_getprop $rom_build_prop "ro.product.cpu.abilist=")"
 

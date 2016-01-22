@@ -13,11 +13,9 @@
 #    GNU General Public License for more details.
 
 # Functions & variables
-rom_build_prop=/system/build.prop
+file_getprop() { grep "^$2" "$1" | cut -d= -f2; }
 
-file_getprop() {
-  grep "^$2" "$1" | cut -d= -f2;
-}
+rom_build_prop=/system/build.prop
 
 rom_version_required=6.0
 rom_version_installed=$(file_getprop $rom_build_prop ro.build.version.release)
@@ -30,15 +28,15 @@ if [ -z "$architecture_installed" ]; then
   architecture_installed="$(file_getprop $rom_build_prop "ro.product.cpu.abi=")"
 fi
  
-# prevent installation of incorrect gapps version
+# Prevent installation of incorrect gapps version
 if [ -z "${rom_version_installed##*$rom_version_required*}" ]; then
   continue
 else
   exit 1
 fi
 
-# prevent installation of gapps on wrong architecture
-# (this package supports armeabi, armeabi-v7a, and arm64-v8.
+# Prevent installation of gapps on wrong architecture
+# (This package supports armeabi, armeabi-v7a, and arm64-v8.
 #  so, as long as the retrieved architecture from build.prop contains
 #  "arm" then the device is supported.)
 if ! (echo "$architecture_installed" | grep -qi "$architecture_required"); then
