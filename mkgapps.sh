@@ -64,55 +64,14 @@ TARGETAPK=$TARGETDIR/$(basename "$TARGETDIR").apk
 # Define beginning time
 BEGIN=$(date +%s)
 
+# Define app locations
+APP_DIRS="dynamic/FaceLock/arm/app/FaceLock dynamic/FaceLock/arm64/app/FaceLock dynamic/PrebuiltGmsCore/430/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/434/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/436/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/438/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/440/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/446/priv-app/PrebuiltGmsCore dynamic/SetupWizard/phone/priv-app/SetupWizard dynamic/SetupWizard/tablet/priv-app/SetupWizard dynamic/Velvet/arm/priv-app/Velvet dynamic/Velvet/arm64/priv-app/Velvet system/app/ChromeBookmarksSyncAdapter system/app/GoogleCalendarSyncAdapter system/app/GoogleContactsSyncAdapter system/app/GoogleTTS system/priv-app/GoogleBackupTransport system/priv-app/GoogleFeedback system/priv-app/GoogleLoginService system/priv-app/GoogleOneTimeInitializer system/priv-app/GoogleServicesFramework system/priv-app/HotwordEnrollment system/priv-app/Phonesky"
+
 # Begin the magic  
-cd "$GAPPSDIR/dynamic/FaceLock/arm/app/FaceLock"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/FaceLock/arm64/app/FaceLock"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/PrebuiltGmsCore/430/priv-app/PrebuiltGmsCore"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/PrebuiltGmsCore/434/priv-app/PrebuiltGmsCore"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/PrebuiltGmsCore/436/priv-app/PrebuiltGmsCore"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/PrebuiltGmsCore/438/priv-app/PrebuiltGmsCore"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/PrebuiltGmsCore/440/priv-app/PrebuiltGmsCore"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/PrebuiltGmsCore/446/priv-app/PrebuiltGmsCore"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/SetupWizard/phone/priv-app/SetupWizard"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/SetupWizard/tablet/priv-app/SetupWizard"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/Velvet/arm/priv-app/Velvet"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/dynamic/Velvet/arm64/priv-app/Velvet"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/app/ChromeBookmarksSyncAdapter"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/app/GoogleCalendarSyncAdapter"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/app/GoogleContactsSyncAdapter"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/app/GoogleTTS"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/GoogleBackupTransport"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/GoogleFeedback"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/GoogleLoginService"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/GoogleOneTimeInitializer"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/GooglePartnerSetup"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/GoogleServicesFramework"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/HotwordEnrollment"
-dcapk 1> /dev/null 2>&1
-cd "$GAPPSDIR/system/priv-app/Phonesky"
-dcapk 1> /dev/null 2>&1
+for dir in $APP_DIRS; do
+  cd "$GAPPSDIR/${dirs}";
+  dcapk 1> /dev/null 2>&1;
+done
 cd "$GAPPSDIR"
 zip -q -r -9 "$ZIPNAME1" ./*
 mv -f "$ZIPNAME1" "$TOOLSDIR"
