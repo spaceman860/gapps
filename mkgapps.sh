@@ -68,7 +68,7 @@ BEGIN=$(date +%s)
 APP_DIRS="dynamic/FaceLock/arm/app/FaceLock dynamic/FaceLock/arm64/app/FaceLock dynamic/PrebuiltGmsCore/430/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/434/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/436/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/438/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/440/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/446/priv-app/PrebuiltGmsCore dynamic/SetupWizard/phone/priv-app/SetupWizard dynamic/SetupWizard/tablet/priv-app/SetupWizard dynamic/Velvet/arm/priv-app/Velvet dynamic/Velvet/arm64/priv-app/Velvet system/app/ChromeBookmarksSyncAdapter system/app/GoogleCalendarSyncAdapter system/app/GoogleContactsSyncAdapter system/app/GoogleTTS system/priv-app/GoogleBackupTransport system/priv-app/GoogleFeedback system/priv-app/GoogleLoginService system/priv-app/GoogleOneTimeInitializer system/priv-app/GoogleServicesFramework system/priv-app/HotwordEnrollment system/priv-app/Phonesky"
 
 # Begin the magic  
-for dir in $APP_DIRS; do
+for dirs in $APP_DIRS; do
   cd "$GAPPSDIR/${dirs}";
   dcapk 1> /dev/null 2>&1;
 done
