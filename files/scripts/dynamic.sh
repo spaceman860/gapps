@@ -57,7 +57,7 @@ elif [ $lcd == 480 ]; then
   cp -rf /tmp/PrebuiltGmsCore/438/* /system
 else
   cp -rf /tmp/PrebuiltGmsCore/430/* /system
-fi 
+fi
 
 if (echo "$device_architecture" | grep -qi "arm64"); then
   rm -rf /system/priv-app/PrebuiltGmsCore

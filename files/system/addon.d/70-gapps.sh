@@ -1,6 +1,6 @@
 #!/sbin/sh
 
-# 
+#
 # /system/addon.d/70-gapps.sh
 #
 
@@ -33,8 +33,8 @@ fi
 
 list_files() {
 cat <<EOF
-  app/FaceLock/FaceLock.apk
   app/ChromeBookmarksSyncAdapter/ChromeBookmarksSyncAdapter.apk
+  app/FaceLock/FaceLock.apk
   app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
   app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
   app/GoogleTTS/GoogleTTS.apk
@@ -158,7 +158,7 @@ case "$1" in
     rm -rf /system/priv-app/PartnerBookmarksProvider
     rm -rf /system/priv-app/Provision
     rm -rf /system/priv-app/QuickSearchBox
-    
+
     # Make required symbolic links
     if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
       mkdir -p /system/app/FaceLock/lib/arm

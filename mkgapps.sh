@@ -47,7 +47,7 @@ ZIPNAME2TITLE=BANKS_GAPPS
 ZIPNAME2VERSION=6.XX
 ZIPNAME1="$ZIPNAME1TITLE"_"$ZIPNAME1VERSION"_"$ZIPNAME1DATE".zip
 ZIPNAME2="$ZIPNAME2TITLE"_"$ZIPNAME2VERSION".zip
- 
+
 dcapk() {
 export PATH=$TOOLSDIR:$PATH
 TARGETDIR=$(realpath .)
@@ -65,7 +65,7 @@ TARGETAPK=$TARGETDIR/$(basename "$TARGETDIR").apk
 # Define beginning time
 BEGIN=$(date +%s)
 
-# Begin the magic  
+# Begin the magic
 for dirs in $APP_DIRS; do
   cd "$GAPPSDIR/${dirs}";
   dcapk 1> /dev/null 2>&1;
