@@ -44,5 +44,3 @@ if ! (echo "$architecture_installed" | grep -qi "$architecture_required"); then
 else
   continue
 fi
-
-exit 0

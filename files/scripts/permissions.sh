@@ -42,5 +42,3 @@ find "/system/vendor/pittpatt" -type d -exec chown 0.2000 '{}' \;
 
 # Set metadata
 set_metadata_recursive "/system/addon.d" "/system/app" "/system/etc/permissions" "/system/etc/preferred-apps" "/system/etc/sysconfig" "/system/framework" "/system/lib" "/system/lib64" "/system/priv-app" "/system/usr/srec" "/system/vendor/lib" "/system/vendor/lib64" "/system/vendor/pittpatt";
-
-exit 0

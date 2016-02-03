@@ -96,5 +96,3 @@ elif (echo "$device_architecture" | grep -qi "arm64"); then
   ln -sfn /system/lib64/libjni_latinime.so /system/app/LatinIME/lib/arm64/libjni_latinime.so
   ln -sfn /system/lib64/libjni_latinimegoogle.so /system/app/LatinIME/lib/arm64/libjni_latinimegoogle.so
 fi
-
-exit 0

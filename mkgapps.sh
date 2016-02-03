@@ -85,4 +85,3 @@ echo " "
 echo "All done creating GApps!"
 echo "Total time elapsed: $(echo $(($END-$BEGIN)) | awk '{print int($1/60)"mins "int($1%60)"secs "}') ($(echo "$END - $BEGIN" | bc) seconds)"
 echo "Completed GApp zips are located in the '$FINALDIR' directory"
-
