@@ -77,9 +77,17 @@ fi
 
 # Velvet
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
-  cp -rf /tmp/Velvet/arm/* /system
-elif (echo "$device_architecture" | grep -qi "arm64"); then
-  cp -rf /tmp/Velvet/arm64/* /system
+  if [ $lcd == 240 ]; then
+    cp -rf /tmp/Velvet/arm/240/* /system
+  elif [ $lcd == 320 ]; then
+    cp -rf /tmp/Velvet/arm/320/* /system
+  else
+    cp -rf /tmp/Velvet/arm/nodpi/* /system
+  fi
+fi
+
+if (echo "$device_architecture" | grep -qi "arm64"); then
+  cp -rf /tmp/Velvet/arm64/nodpi/* /system
 fi
 
 # Make required symbolic links
