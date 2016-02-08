@@ -13,6 +13,8 @@
 #    GNU General Public License for more details.
 
 # Functions & variables
+tmp_path=/data/local/dynamic
+
 file_getprop() { grep "^$2" "$1" | cut -d= -f2; }
 
 rom_build_prop=/system/build.prop
@@ -30,64 +32,64 @@ lcd="$(grep ro.sf.lcd_density $rom_build_prop | cut -d "=" -f 2)"
 
 # FaceLock
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
-  cp -rf /tmp/FaceLock/arm/* /system
+  cp -rf $tmp_path/FaceLock/arm/* /system
 elif (echo "$device_architecture" | grep -qi "arm64"); then
-  cp -rf /tmp/FaceLock/arm64/* /system
+  cp -rf $tmp_path/FaceLock/arm64/* /system
 fi
 
 # Libs
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
-  cp -rf /tmp/Libs/system/lib/* /system/lib
+  cp -rf $tmp_path/Libs/system/lib/* /system/lib
   mkdir -p /system/vendor/lib
-  cp -rf /tmp/Libs/system/vendor/lib/* /system/vendor/lib
+  cp -rf $tmp_path/Libs/system/vendor/lib/* /system/vendor/lib
 elif (echo "$device_architecture" | grep -qi "arm64"); then
-  cp -rf /tmp/Libs/system/lib64/* /system/lib64
+  cp -rf $tmp_path/Libs/system/lib64/* /system/lib64
   mkdir -p /system/vendor/lib
   mkdir -p /system/vendor/lib64
-  cp -rf /tmp/Libs/system/vendor/lib/* /system/vendor/lib
-  cp -rf /tmp/Libs/system/vendor/lib64/* /system/vendor/lib64
+  cp -rf $tmp_path/Libs/system/vendor/lib/* /system/vendor/lib
+  cp -rf $tmp_path/Libs/system/vendor/lib64/* /system/vendor/lib64
 fi
 
 # PrebuiltGmsCore
 if [ $lcd == 240 ]; then
-  cp -rf /tmp/PrebuiltGmsCore/434/* /system
+  cp -rf $tmp_path/PrebuiltGmsCore/434/* /system
 elif [ $lcd == 320 ]; then
-  cp -rf /tmp/PrebuiltGmsCore/436/* /system
+  cp -rf $tmp_path/PrebuiltGmsCore/436/* /system
 elif [ $lcd == 480 ]; then
-  cp -rf /tmp/PrebuiltGmsCore/438/* /system
+  cp -rf $tmp_path/PrebuiltGmsCore/438/* /system
 else
-  cp -rf /tmp/PrebuiltGmsCore/430/* /system
+  cp -rf $tmp_path/PrebuiltGmsCore/430/* /system
 fi
 
 if (echo "$device_architecture" | grep -qi "arm64"); then
   rm -rf /system/priv-app/PrebuiltGmsCore
     if [ $lcd == 320 ]; then
-      cp -rf /tmp/PrebuiltGmsCore/446/* /system
+      cp -rf $tmp_path/PrebuiltGmsCore/446/* /system
     else
-      cp -rf /tmp/PrebuiltGmsCore/440/* /system
+      cp -rf $tmp_path/PrebuiltGmsCore/440/* /system
     fi
 fi
 
 # SetupWizard
 if [ -n "$is_tablet" ]; then
-  cp -rf /tmp/SetupWizard/tablet/* /system
+  cp -rf $tmp_path/SetupWizard/tablet/* /system
 else
-  cp -rf /tmp/SetupWizard/phone/* /system
+  cp -rf $tmp_path/SetupWizard/phone/* /system
 fi
 
 # Velvet
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
   if [ $lcd == 240 ]; then
-    cp -rf /tmp/Velvet/arm/240/* /system
+    cp -rf $tmp_path/Velvet/arm/240/* /system
   elif [ $lcd == 320 ]; then
-    cp -rf /tmp/Velvet/arm/320/* /system
+    cp -rf $tmp_path/Velvet/arm/320/* /system
   else
-    cp -rf /tmp/Velvet/arm/nodpi/* /system
+    cp -rf $tmp_path/Velvet/arm/nodpi/* /system
   fi
 fi
 
 if (echo "$device_architecture" | grep -qi "arm64"); then
-  cp -rf /tmp/Velvet/arm64/nodpi/* /system
+  cp -rf $tmp_path/Velvet/arm64/nodpi/* /system
 fi
 
 # Make required symbolic links
@@ -104,3 +106,6 @@ elif (echo "$device_architecture" | grep -qi "arm64"); then
   ln -sfn /system/lib64/libjni_latinime.so /system/app/LatinIME/lib/arm64/libjni_latinime.so
   ln -sfn /system/lib64/libjni_latinimegoogle.so /system/app/LatinIME/lib/arm64/libjni_latinimegoogle.so
 fi
+
+# Cleanup
+rm -rf $tmp_path
