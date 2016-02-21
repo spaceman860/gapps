@@ -30,8 +30,9 @@ fi
  
 # Prevent installation of incorrect gapps version
 if [ -z "${rom_version_installed##*$rom_version_required*}" ]; then
-  continue
+  echo "ROM and GApps versions match...proceeding"
 else
+  echo "ROM and GApps versions don't match...aborting"
   exit 1
 fi
 
@@ -40,7 +41,8 @@ fi
 #  so, as long as the retrieved architecture from build.prop contains
 #  "arm" then the device is supported.)
 if ! (echo "$architecture_installed" | grep -qi "$architecture_required"); then
+  echo "Architecture check didn't pass...aborting"
   exit 1
 else
-  continue
+  echo "Architecture check passed...proceeding"
 fi
