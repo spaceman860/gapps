@@ -18,7 +18,7 @@ file_getprop() { grep "^$2" "$1" | cut -d= -f2; }
 rom_build_prop=/system/build.prop
 
 rom_version_required=6.0
-rom_version_installed=$(file_getprop $rom_build_prop ro.build.version.release)
+rom_version_installed="$(file_getprop $rom_build_prop "ro.build.version.release")"
 
 architecture_required=arm
 architecture_installed="$(file_getprop $rom_build_prop "ro.product.cpu.abilist=")"
