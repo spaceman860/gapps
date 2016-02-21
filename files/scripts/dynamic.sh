@@ -28,8 +28,6 @@ fi
 
 is_tablet="$(grep ro.build.characteristics $rom_build_prop | grep tablet)"
 
-lcd="$(grep ro.sf.lcd_density $rom_build_prop | cut -d "=" -f 2)"
-
 # FaceLock
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
   cp -rf $tmp_path/FaceLock/arm/* /system
@@ -51,23 +49,10 @@ elif (echo "$device_architecture" | grep -qi "arm64"); then
 fi
 
 # PrebuiltGmsCore
-if [ $lcd == 240 ]; then
-  cp -rf $tmp_path/PrebuiltGmsCore/434/* /system
-elif [ $lcd == 320 ]; then
-  cp -rf $tmp_path/PrebuiltGmsCore/436/* /system
-elif [ $lcd == 480 ]; then
-  cp -rf $tmp_path/PrebuiltGmsCore/438/* /system
-else
-  cp -rf $tmp_path/PrebuiltGmsCore/430/* /system
-fi
-
-if (echo "$device_architecture" | grep -qi "arm64"); then
-  rm -rf /system/priv-app/PrebuiltGmsCore
-    if [ $lcd == 320 ]; then
-      cp -rf $tmp_path/PrebuiltGmsCore/446/* /system
-    else
-      cp -rf $tmp_path/PrebuiltGmsCore/440/* /system
-    fi
+if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
+  cp -rf $tmp_path/PrebuiltGmsCore/arm/* /system
+elif (echo "$device_architecture" | grep -qi "arm64"); then
+  cp -rf $tmp_path/PrebuiltGmsCore/arm64/* /system
 fi
 
 # SetupWizard
@@ -79,17 +64,9 @@ fi
 
 # Velvet
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
-  if [ $lcd == 240 ]; then
-    cp -rf $tmp_path/Velvet/arm/240/* /system
-  elif [ $lcd == 320 ]; then
-    cp -rf $tmp_path/Velvet/arm/320/* /system
-  else
-    cp -rf $tmp_path/Velvet/arm/nodpi/* /system
-  fi
-fi
-
-if (echo "$device_architecture" | grep -qi "arm64"); then
-  cp -rf $tmp_path/Velvet/arm64/nodpi/* /system
+  cp -rf $tmp_path/Velvet/arm/* /system
+elif (echo "$device_architecture" | grep -qi "arm64"); then
+  cp -rf $tmp_path/Velvet/arm64/* /system
 fi
 
 # Make required symbolic links
