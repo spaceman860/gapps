@@ -33,11 +33,21 @@ fi
 
 list_files() {
 cat <<EOF
+  app/CalendarGoogle/CalendarGoogle.apk
   app/ChromeBookmarksSyncAdapter/ChromeBookmarksSyncAdapter.apk
+  app/Drive/Drive.apk
   app/FaceLock/FaceLock.apk
   app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
+  app/GoogleCamera/GoogleCamera.apk
   app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
+  app/GoogleHome/GoogleHome.apk
+  app/GoogleInbox/GoogleInbox.apk
   app/GoogleTTS/GoogleTTS.apk
+  app/Hangouts/Hangouts.apk
+  app/PlusOne/PlusOne.apk
+  app/TBO/TBO.apk
+  app/Wear/Wear.apk
+  app/YouTube/YouTube.apk
   etc/permissions/com.google.android.camera.experimental2015.xml
   etc/permissions/com.google.android.maps.xml
   etc/permissions/com.google.android.media.effects.xml
@@ -149,6 +159,8 @@ case "$1" in
   post-restore)
     # Re-remove conflicting apks
     rm -rf /system/app/BrowserProviderProxy
+    rm -rf /system/app/Calendar
+    rm -rf /system/app/Camera2
     rm -rf /system/app/PartnerBookmarksProvider
     rm -rf /system/app/Provision
     rm -rf /system/app/QuickSearchBox

@@ -13,39 +13,18 @@
 #    GNU General Public License for more details.
 
 # Pretty ascii art
-echo "._______.._______..__...._..___..._.._______................";
-echo "|.._....||..._...||..|..|.||...|.|.||.......|...............";
-echo "|.|_|...||..|_|..||...|_|.||...|_|.||.._____|...............";
-echo "|.......||.......||.......||......_||.|_____................";
-echo "|.._...|.|.......||.._....||.....|_.|_____..|...............";
-echo "|.|_|...||..._...||.|.|...||...._..|._____|.|...............";
-echo "|_______||__|.|__||_|..|__||___|.|_||_______|...............";
-echo ".______...__...__..__...._.._______..__...__..___..._______.";
-echo "|......|.|..|.|..||..|..|.||..._...||..|_|..||...|.|.......|";
-echo "|.._....||..|_|..||...|_|.||..|_|..||.......||...|.|.......|";
-echo "|.|.|...||.......||.......||.......||.......||...|.|.......|";
-echo "|.|_|...||_....._||.._....||.......||.......||...|.|......_|";
-echo "|.......|..|...|..|.|.|...||..._...||.||_||.||...|.|.....|_.";
-echo "|______|...|___|..|_|..|__||__|.|__||_|...|_||___|.|_______|";
-echo "._______.._______.._______.._______.._______................";
-echo "|.......||..._...||.......||.......||.......|...............";
-echo "|....___||..|_|..||...._..||...._..||.._____|...............";
-echo "|...|.__.|.......||...|_|.||...|_|.||.|_____................";
-echo "|...||..||.......||....___||....___||_____..|...............";
-echo "|...|_|.||..._...||...|....|...|....._____|.|...............";
-echo "|_______||__|.|__||___|....|___|....|_______|...............";
+echo "MY GAPPS";
 
 # Define paths && variables
-APP_DIRS="dynamic/FaceLock/arm/app/FaceLock dynamic/FaceLock/arm64/app/FaceLock dynamic/PrebuiltGmsCore/arm/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/arm64/priv-app/PrebuiltGmsCore dynamic/SetupWizard/phone/priv-app/SetupWizard dynamic/SetupWizard/tablet/priv-app/SetupWizard dynamic/Velvet/arm/priv-app/Velvet dynamic/Velvet/arm64/priv-app/Velvet system/app/ChromeBookmarksSyncAdapter system/app/GoogleCalendarSyncAdapter system/app/GoogleContactsSyncAdapter system/app/GoogleTTS system/priv-app/GoogleBackupTransport system/priv-app/GoogleFeedback system/priv-app/GoogleLoginService system/priv-app/GoogleOneTimeInitializer system/priv-app/GooglePartnerSetup system/priv-app/GoogleServicesFramework system/priv-app/HotwordEnrollment system/priv-app/Phonesky"
+APP_DIRS="dynamic/FaceLock/arm/app/FaceLock dynamic/FaceLock/arm64/app/FaceLock dynamic/PrebuiltGmsCore/arm/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/arm64/priv-app/PrebuiltGmsCore dynamic/SetupWizard/phone/priv-app/SetupWizard dynamic/SetupWizard/tablet/priv-app/SetupWizard dynamic/Velvet/arm/priv-app/Velvet dynamic/Velvet/arm64/priv-app/Velvet system/app/CalendarGoogle system/app/ChromeBookmarksSyncAdapter system/app/Drive system/app/GoogleCalendarSyncAdapter system/app/GoogleCamera system/app/GoogleContactsSyncAdapter system/app/GoogleHome system/app/GoogleInbox system/app/GoogleTTS system/app/Hangouts system/app/PlusOne system/app/TBO system/app/Wear system/app/YouTube system/priv-app/GoogleBackupTransport system/priv-app/GoogleFeedback system/priv-app/GoogleLoginService system/priv-app/GoogleOneTimeInitializer system/priv-app/GooglePartnerSetup system/priv-app/GoogleServicesFramework system/priv-app/HotwordEnrollment system/priv-app/Phonesky"
 TOOLSDIR=$(realpath .)/tools
 GAPPSDIR=$(realpath .)/files
 FINALDIR=$(realpath .)/out
-ZIPNAME1TITLE=BaNkS_Dynamic_GApps
-ZIPNAME1VERSION=6.x.x
-ZIPNAME1DATE=$(date +%-m-%-e-%-y)_$(date +%H:%M)
-ZIPNAME2TITLE=BANKS_GAPPS
+ZIPNAME1TITLE=My_Gapps
+ZIPNAME1DATE=$(date +%-m-%-e-%-y)
+ZIPNAME2TITLE=g
 ZIPNAME2VERSION=6.XX
-ZIPNAME1="$ZIPNAME1TITLE"_"$ZIPNAME1VERSION"_"$ZIPNAME1DATE".zip
+ZIPNAME1="$ZIPNAME1TITLE"_"$ZIPNAME1DATE".zip
 ZIPNAME2="$ZIPNAME2TITLE"_"$ZIPNAME2VERSION".zip
 
 dcapk() {
