@@ -22,10 +22,7 @@ GAPPSDIR=$(realpath .)/files
 FINALDIR=$(realpath .)/out
 ZIPNAME1TITLE=My_Gapps
 ZIPNAME1DATE=$(date +%-m-%-e-%-y)
-ZIPNAME2TITLE=g
-ZIPNAME2VERSION=6.XX
 ZIPNAME1="$ZIPNAME1TITLE"_"$ZIPNAME1DATE".zip
-ZIPNAME2="$ZIPNAME2TITLE"_"$ZIPNAME2VERSION".zip
 
 dcapk() {
 export PATH=$TOOLSDIR:$PATH
@@ -55,7 +52,7 @@ mv -f "$ZIPNAME1" "$TOOLSDIR"
 cd "$TOOLSDIR"
 java -Xmx2048m -jar signapk.jar -w testkey.x509.pem testkey.pk8 "$ZIPNAME1" "$ZIPNAME1"
 mv -f "$ZIPNAME1" "$FINALDIR"
-cp -f "$FINALDIR"/"$ZIPNAME1" "$FINALDIR"/"$ZIPNAME2"
+cp -f "$FINALDIR"/"$ZIPNAME1"
 
 # Define ending time
 END=$(date +%s)
@@ -63,4 +60,5 @@ END=$(date +%s)
 echo " "
 echo "All done creating GApps!"
 echo "Total time elapsed: $(echo $(($END-$BEGIN)) | awk '{print int($1/60)"mins "int($1%60)"secs "}') ($(echo "$END - $BEGIN" | bc) seconds)"
-echo "Completed GApp zips are located in the '$FINALDIR' directory"
+echo "Completed GApp zip located in the '$FINALDIR' directory"
+cd && cd g/out && mv My_Gapps*.zip /home/spaceman/mygapps
