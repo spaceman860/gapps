@@ -44,6 +44,7 @@ cat <<EOF
   app/GoogleInbox/GoogleInbox.apk
   app/GoogleTTS/GoogleTTS.apk
   app/Hangouts/Hangouts.apk
+  app/Photos/Photos.apk
   app/PlusOne/PlusOne.apk
   app/TBO/TBO.apk
   app/Wear/Wear.apk
