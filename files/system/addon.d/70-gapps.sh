@@ -50,6 +50,7 @@ cat <<EOF
   app/Wear/Wear.apk
   app/YouTube/YouTube.apk
   etc/permissions/com.google.android.camera.experimental2015.xml
+  etc/permissions/com.google.android.dialer.support.xml
   etc/permissions/com.google.android.maps.xml
   etc/permissions/com.google.android.media.effects.xml
   etc/permissions/com.google.widevine.software.drm.xml
@@ -59,6 +60,7 @@ cat <<EOF
   etc/sysconfig/whitelist_com.android.omadm.service.xml
   etc/updatecmds/google_generic_update.txt
   framework/com.google.android.camera.experimental2015.jar
+  framework/com.google.android.dialer.support.jar
   framework/com.google.android.maps.jar
   framework/com.google.android.media.effects.jar
   framework/com.google.widevine.software.drm.jar
