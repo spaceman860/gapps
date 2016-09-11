@@ -37,8 +37,6 @@ set_metadata_recursive() {
   done;
 }
 
-# Change pittpatt folders to root:shell per Google Factory Settings
-find "/system/vendor/pittpatt" -type d -exec chown 0.2000 '{}' \;
 
 # Set metadata
-set_metadata_recursive "/system/addon.d" "/system/app" "/system/etc/permissions" "/system/etc/preferred-apps" "/system/etc/sysconfig" "system/etc/updatecmds" "/system/framework" "/system/lib" "/system/lib64" "/system/priv-app" "/system/usr/srec" "/system/vendor/lib" "/system/vendor/lib64" "/system/vendor/pittpatt";
+set_metadata_recursive "/system/addon.d" "/system/app" "/system/etc/permissions" "/system/etc/preferred-apps" "/system/etc/sysconfig" "/system/framework" "/system/lib" "/system/lib64" "/system/priv-app" "/system/usr/srec" "/system/vendor/lib" "/system/vendor/lib64";

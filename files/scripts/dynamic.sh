@@ -73,13 +73,13 @@ fi
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
   mkdir -p /system/app/FaceLock/lib/arm
   mkdir -p /system/app/LatinIME/lib/arm
-  ln -sfn /system/lib/libfacelock_jni.so /system/app/FaceLock/lib/arm/libfacelock_jni.so
+  ln -sfn /system/lib/libfacenet.so /system/app/FaceLock/lib/arm/libfacenet.so
   ln -sfn /system/lib/libjni_latinime.so /system/app/LatinIME/lib/arm/libjni_latinime.so
   ln -sfn /system/lib/libjni_latinimegoogle.so /system/app/LatinIME/lib/arm/libjni_latinimegoogle.so
 elif (echo "$device_architecture" | grep -qi "arm64"); then
   mkdir -p /system/app/FaceLock/lib/arm64
   mkdir -p /system/app/LatinIME/lib/arm64
-  ln -sfn /system/lib64/libfacelock_jni.so /system/app/FaceLock/lib/arm64/libfacelock_jni.so
+  ln -sfn /system/lib64/libfacenet.so /system/app/FaceLock/lib/arm64/libfacenet.so
   ln -sfn /system/lib64/libjni_latinime.so /system/app/LatinIME/lib/arm64/libjni_latinime.so
   ln -sfn /system/lib64/libjni_latinimegoogle.so /system/app/LatinIME/lib/arm64/libjni_latinimegoogle.so
 fi
